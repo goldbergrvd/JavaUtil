@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    compile 'org.codehaus.groovy:groovy-all:2.3.3'
+    compile 'com.google.code.gson:gson:2.2.4'
+}
