@@ -19,12 +19,17 @@ public class JSONsTest extends Specification {
             def result = JSONs.transform(json, Bean.class)
         
         then:
-            result.eachWithIndex { bean, i ->
-                "value" + (i+1) + "-1" == bean.value1
-                "value" + (i+1) + "-2" == bean.value2
-                "value" + (i+1) + "-3" == bean.value3
-                "value" + (i+1) + "-4" == bean.value4
-            }
+            "value${a}-1" == result.get(b).value1
+            "value${a}-2" == result.get(b).value2
+            "value${a}-3" == result.get(b).value3
+            "value${a}-4" == result.get(b).value4
+
+        where:
+            a || b
+            1 || 0
+            2 || 1
+            3 || 2
+            4 || 3
     }
     
     public static class Bean {
