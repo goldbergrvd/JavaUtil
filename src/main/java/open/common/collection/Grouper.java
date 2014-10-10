@@ -35,11 +35,14 @@ public class Grouper {
                 if (groupKey.name().equals(groupKeyName)) {
                     isStringReturnType(method);
                     if (groupKeyMethod != null) {
-                        throw new IllegalArgumentException("GroupKey name \"" + groupKeyName + "\" duplicate!");
+                        throw new IllegalArgumentException("GroupKey named \"" + groupKeyName + "\" duplicate!");
                     }
                     groupKeyMethod = method;
                 }
             }
+        }
+        if (groupKeyMethod == null) {
+            throw new IllegalArgumentException("GroupKey named \"" + groupKeyName + "\" not exists!");
         }
 
         // Use group key method to manipulate group

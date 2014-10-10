@@ -106,7 +106,23 @@ public class GrouperTest extends Specification {
 
         then:
             IllegalArgumentException e = thrown()
-            e.message == "GroupKey name \"" + key + "\" duplicate!"
+            e.message == "GroupKey named \"" + key + "\" duplicate!"
+    }
+
+    def "所指定之 GroupKey 名稱不存在的錯誤"() {
+        given:
+            def key = "no_this_key"
+            List<DuplicateKeyBean> groupMembers = [new Bean(),
+                                                   new Bean(),
+                                                   new Bean()
+                                                  ]
+
+        when:
+            Grouper.group(groupMembers, key)
+
+        then:
+            IllegalArgumentException e = thrown()
+            e.message == "GroupKey named \"" + key + "\" not exists!"
     }
 
     public static class Bean {
