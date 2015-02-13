@@ -19,8 +19,8 @@ public class Jsons {
 
     public static <E> List<E> transform(String json2DArray, Class<E> clazz) {
         Gson gson = new Gson();
-        List<E> result = new ArrayList<>();
         List<List<String>> table = gson.fromJson(json2DArray, json2DArrayType);
+        List<E> result = new ArrayList<>(table.size());
 
         Field[] allField = clazz.getDeclaredFields();
         List<Field> jsonArrayValueFields = new ArrayList<>();
